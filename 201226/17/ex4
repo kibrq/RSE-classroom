@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+
+''' Рассматривается множество целых чисел на интервале [15, 2 000 000], которые образуют геометрическую прогрессию со знаменателем 2: 15, 30, 60, ... Найдите среди них числа, у которых есть повторяющиеся цифры. В ответе через пробел напишите сперва количество таких чисел, а затем разность максимального и минимального из них. '''
+
+
+def digits(n, r):
+    digs = []
+    while n > 0:
+        digs.append(n % r)
+        n //= r
+    return list(reversed(digs))
+
+
+def pred(n):
+    digs = digits(n, 10)
+    freqs = [0 for i in range(10)]  # Просто список из 10 "0"
+    for d in digs:
+        freqs[d] += 1
+    for c in freqs:
+        if c > 1:
+            return True
+    return False
+
+
+ans = [0, 0, 2000001]  # <cnt, max, min>
+
+
+def handle(n):
+    ans[0] += 1
+    ans[1] = max(ans[1], n)
+    ans[2] = min(ans[2], n)
+
+
+def answer():
+    print(ans[0], ans[1] - ans[2])
+
+
+def build():
+    A = []
+    x = 15
+    while x <= 2000000:
+        A.append(x)
+        x *= 2
+    return A
+
+
+for n in build():
+    if pred(n):
+        handle(n)
+
+answer()

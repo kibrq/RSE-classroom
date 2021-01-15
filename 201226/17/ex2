@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+
+import math
+
+''' Условие Назовём натуральное число подходящим, если ровно два из его делителей входят в список (7, 11, 13, 19). Найдите все подходящие числа, принадлежащих отрезку [20000; 30000] В ответе запишите два целых числа: сначала количество, затем среднее арифметическое всех найденных чисел (только целую часть). '''
+
+
+def divisors1(n):
+    divs = []
+    for d in range(1, n + 1):
+        if n % d == 0:
+            divs.append(d)
+
+
+def divisors2(n):
+    ''' d - делитель => n / d - делитель '''
+    divs = []
+    bound = int(math.sqrt(n)) + 1
+    for d in range(1, bound):
+        if n % d == 0:
+            divs.append(d)
+            divs.append(n // d)
+    return sorted(divs)
+
+
+def pred(n):
+    ''' Проверяет условие задачи для заданного числа '''
+    cnt = 0
+    # print(divisors2(n))
+    for d in divisors2(n):
+        if d in [7, 11, 13, 19]:  # (d == 7 or d == 11 or d == 13 or d == 19)
+            cnt += 1
+    return cnt == 2
+
+
+def pred_(n):
+    ''' Проверяет условие задачи для заданного числа '''
+    bound = int(math.sqrt(n)) + 1
+    cnt = 0
+    for d in [7, 11, 13, 19]:
+        if n % d == 0:
+            cnt += 1
+    return cnt == 2
+
+
+ans = [0, 0]  # <кол-во, сумма>, можно count, sum хранить отдельно
+
+
+def handle(n):
+    ans[0] += 1
+    ans[1] += n
+    pass
+
+
+def answer():
+    print(ans[0], int(ans[1] / ans[0]))
+
+
+def build():
+    return range(20000, 30000 + 1)  # !!! ВАЖНО [a, b + 1) == [a, b]
+
+
+for n in build():
+    if pred(n):
+        handle(n)
+
+answer()

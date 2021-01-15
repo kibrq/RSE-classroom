@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+''' Рассматривается множество целых чисел, принадлежащих числовому отрезку [100001; 900009], которые удовлетворяют следующим условиям: а) сумма значений младшего разряда в 7-й системе счисления и младшего разряда в 10-й системе счисления равно 10; б) число делится на 11, но не делится на 55. Найдите наибольшее из таких чисел и их количество. '''
+
+
+def digits(n, r):
+    digs = []
+    while n > 0:
+        digs.append(n % r)
+        n //= r
+    return list(reversed(digs))
+
+
+def pred(n):
+    condition1 = digits(n, 10)[-1] + digits(n, 7)[-1] == 10
+    condition2 = n % 11 == 0 and not n % 55 == 0
+    return condition1 and condition2
+
+
+ans = [0, 0]  # <max, cnt>
+
+
+def handle(n):
+    ans[0] = max(ans[0], n)
+    ans[1] += 1
+
+
+def answer():
+    print(ans[0], ans[1])
+
+
+def build():
+    # Множество рассматриывамых чисел, обычно [a, b]
+    return range(100001, 900009 + 1)
+
+
+for n in build():
+    if pred(n):
+        handle(n)
+
+answer()

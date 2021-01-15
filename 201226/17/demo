@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+
+cnt = 0
+max_ = 0
+for n in range(2000, 4000): # i --> [1, ..., 10]
+    if n % 3 == 0 or n % 5 == 0:
+        if not (n % 7 == 0 or n % 11 == 0 or n % 13 == 0 or n % 23 == 0):
+            cnt += 1
+            max_ = max(max_, n)
+
+
+
+print(cnt, max_)
