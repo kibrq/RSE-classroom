@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+'''
+Текстовый файл 24-j5.txt состоит не более чем из 106 символов S, T, O, C, K. Сколько раз встречается в файле комбинация «SOCKCOS»?
+'''
+
+s = ''
+target = 'SOCKCOS'
+
+with open('input.txt') as file:
+    s = file.read().replace('\n', '')
+
+
+n = len(s)
+subs = [[] for _ in range(len(target))]
+for i in range(len(target)):
+    for j in range(i, n, len(target)):
+        subs[i].append(s[j:j + len(target)])
+
+
+cnt = 0
+for sub in subs:
+    for el in sub:
+        cnt += el == target
+
+
+print(cnt)

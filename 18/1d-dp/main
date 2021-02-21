@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+'''
+Дана полоска 1 x N, в каждой клетке которой написано целое число.
+Кузнечик стоит в клетке с номером 1, ему нужно в клетку с номером N, он мыжет прагать на 1 клетку или если он в клетке x, то может прыгнуть в клетку 2 * x.
+к тому же он хочет собрать наибольшую сумму чисел.
+'''
+
+N = int(input())  # число клеток
+
+nums = list(map(int, input().split()))  # массив чисел
+
+dp = [0] * (N + 1)  # массив динамики c запасом
+
+dp[1] = nums[1]  # инициаизируем начальным значением
+
+for i in range(1, N + 1):
+    dp[i] = dp[i - 1]
+    if i % 2 == 0:
+        dp[i] = max(dp[i], dp[i // 2])
+    dp[i] += nums[i]
+
+print(dp[N])
+
+'''
+Тоже самое только с помощью рекурсии
+'''
+
+
+def f(n):
+    if n == 1:
+        return nums[1]
+    res = f(n - 1)
+    if i % 2 == 0:
+        res = max(res, f(n // 2))
+    return res + nums[n]
+
+
+print(f(N))
+
+'''
+Тоже самое с рекурсией с запоминанием
+'''
+
+mem = [None] * (N + 1)
+
+
+def memf(n):
+    if n == 1:
+        return nums[1]
+    if mem[n - 1] == None:
+        mem[n - 1] = memf(n - 1)
+    if n % 2 == 0 and mem[n // 2] == None:
+        mem[n // 2] = memf(n // 2)
+    res = mem[n - 1]
+    if n % 2 == 0:
+        res = max(res, mem[n // 2])
+    return res + nums[n]
+
+
+print(memf(N))

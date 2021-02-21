@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+'''
+Текстовый файл 24-5.txt содержит последовательность из символов «(»и «)», всего не более 106 символов. Определите, с какого по счёту символа от начала файла начинается 10000-я пара скобок «()» (нумерация символов начинается с 1).
+'''
+
+s = ''
+target = 10000
+with open('input.txt', 'r') as file:
+    s = file.read().replace('\n', '')
+
+n, cnt = len(s), 0
+ans = 0
+for i in range(n - 1):
+    if s[i] == '(' and s[i + 1] == ')':
+        cnt += 1
+    if cnt == target:
+        ans = i + 1
+        break
+
+print(ans)
+
+ans, cnt = 0, 0
+
+for i, (l, r) in enumerate(zip(s, s[1:])):
+    cnt += l == '(' and r == ')'
+    if cnt == target:
+        ans = i + 1
+        break
+
+print(ans)
