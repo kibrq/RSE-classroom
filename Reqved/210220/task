@@ -1,0 +1,24 @@
+Из этих какие понравятся (желательно больше 3)
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=3439
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=3345
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=2544
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=3428
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=3362
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=2559
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=3158
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=2555
+
+
+На повторение:
+https://kpolyakov.spb.ru/school/ege/gen.php?action=viewTopic&topicId=2834
+
+F(n) = n + 15, при n ≤ 5
+F(n) = F(n//2) + n*n*n - 1, при чётных n > 5
+F(n) = F(n-1) + 2*n*n + 1, при нечётных n > 5
+
+Определите самое близкое к 2021 число, для которого у F(n) и в десятичной и в восьмиричной системе одинаковое количество цифр 5 (хотя бы одна цифра 5 должна присутствовать)
+
+Ответ: 2023
+
+
+В папке solutions есть решение последней задачи, посмотреть можно после того, как получил решение.
