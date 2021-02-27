@@ -4,8 +4,8 @@ def F(n):
     if n <= 5:
         return n + 15
     if n % 2 == 0:
-        return F(n // 2) + n ** 3
-    return F(n - 1) + 2 * (n ** 2)
+        return F(n // 2) + n ** 3 - 1
+    return F(n - 1) + 2 * (n ** 2) + 1
 
 
 def digits(n, r):
@@ -20,9 +20,10 @@ def digits(n, r):
 
 def condition(n):
     cnt = 0
+    print(digits(n, 10), digits(n, 8))
     for d in digits(n, 10):
         cnt += d == 5
-    if not cnt > 0:
+    if cnt == 0:
         return False
     for d in digits(n, 8):
         cnt -= d == 5
@@ -32,7 +33,7 @@ def condition(n):
 N = 2021
 ans = 0
 
-for delta in range(2021):
+for delta in range(N):
     for n in map(lambda s: N + s * delta, [-1, 1]):
         if condition(F(n)):
             ans = n
