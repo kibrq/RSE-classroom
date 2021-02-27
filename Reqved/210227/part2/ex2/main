@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+'''
+Для интервала [33333;55555] найдите числа, которые кратны сумме своих простых делителей. В качестве ответа приведите числа, для которых сумма простых делителей больше 250, – сначала найденное число, затем сумму его простых делителей. Примечание: само число в качестве делителя не учитывается.
+'''
+
+def primes(n):
+    def fst(m, d):
+        for x in range(d, int(n ** 0.5) + 1):
+            if m % x == 0:
+                return x
+        return m
+    divs, d = [], 2
+    while n > 1:
+        x = fst(n, d)
+        while n % x == 0:
+            n //= x
+        divs.append(x)
+    return divs
+
+def test(n):
+    ps = primes(n)
+    s = sum(ps)
+    if len(ps) > 1 and n % s == 0 and s > 250:
+        print(n, s)
+
+
+for n in range(33333,55555 + 1):
+    test(n)

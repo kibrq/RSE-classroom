@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+
+ss = []
+
+with open('input.txt') as file:
+    ss = file.read().split('\n')
+
+

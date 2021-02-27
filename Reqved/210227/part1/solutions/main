@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+'''
+Рассматриваются целые числа, принадлежащих числовому отрезку [318216; 369453], которые представляют собой произведение трёх различных простых делителей, оканчивающихся на одну и ту же цифру. В ответе запишите количество таких чисел и минимальное из них.
+'''
+
+
+def primes(n):
+    divs, d = [], 2
+    def fstprime():
+        bound = int(n ** 0.5)
+        for x in range(d, bound + 1):
+            if n % x == 0:
+                return x
+        return n
+    while n != 1:
+        x = fstprime()
+        divs.append(x)
+        while n % x == 0:
+            n //= x
+        d = x
+
+    return divs
+
+
+a = [0, 10**9]
+
+def ans(n):
+    prims = primes(n)
+    if len(prims) != 3:
+        return
+    a1, a2, a3 = prims
+    if str(a1)[-1] == str(a2)[-1] and str(a2)[-1] == str(a3)[-1]:
+        print(a1, a2, a3)
+        a[0] += 1
+        a[1] = min(a[1], n)
+
+
+for n in range(318216, 369453 + 1):
+    ans(n)
+
+print(a[0], a[1])
+
