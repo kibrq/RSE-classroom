@@ -6,19 +6,18 @@
 
 
 def primes(n):
-    divs, d = [], 2
-    def fstprime():
+    def fst(n, d):
         bound = int(n ** 0.5)
         for x in range(d, bound + 1):
             if n % x == 0:
                 return x
         return n
+    divs, d = [], 2
     while n != 1:
-        x = fstprime()
-        divs.append(x)
-        while n % x == 0:
-            n //= x
-        d = x
+        d = fst(n, d)
+        divs.append(d)
+        while n % d == 0:
+            n //= d
 
     return divs
 
@@ -30,10 +29,12 @@ def ans(n):
     if len(prims) != 3:
         return
     a1, a2, a3 = prims
-    if str(a1)[-1] == str(a2)[-1] and str(a2)[-1] == str(a3)[-1]:
-        print(a1, a2, a3)
-        a[0] += 1
-        a[1] = min(a[1], n)
+    if a1 * a2 * a3 != n:
+        return
+    if str(a1)[-1] != str(a2)[-1] or str(a2)[-1] != str(a3)[-1]:
+        return
+    a[0] += 1
+    a[1] = min(a[1], n)
 
 
 for n in range(318216, 369453 + 1):
