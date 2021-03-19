@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-
-'''
 Набор данных состоит из нечётного количества пар натуральных чисел. Необходимо выбрать из каждой пары ровно одно число так, чтобы сумма выбранных чисел была минимальной при условии, что чётность этой суммы НЕ совпадает с чётностью большинства выбранных чисел. Определите минимальную сумму, которую можно получить при таком условии. Гарантируется, что удовлетворяющий условиям выбор возможен.
 Входные данные. Даны два входных файла (файл A и файл B), каждый из которых содержит в первой строке количество чисел N (1 ≤ N ≤ 100000). Каждая из следующих N строк содержит два натуральных числа, не превышающих 10000.
 Пример входного файла:
@@ -12,47 +9,20 @@
 9 14
 Для указанных данных надо выбрать числа 7, 6, 6, 2 и 14. Большинство из них чётны, их сумма 35 нечётна.
 В ответе укажите два числа: сначала искомое значение для файла А, затем для файла B.
-'''
 
-ss = []
-with open('input.txt') as f:
-    ss = f.readlines()
+Н Ч
 
-n = int(ss[0])
 
-pairs = [tuple(map(int, ss[i+1].split())) for i in range(n)]
+sum        Ч       Н
+           x       y
+         x + 1   y - 1
+         x - 1   y + 1
 
-parity, s = [0, 0], 0
+         x < y
 
-for l, r in pairs:
-    s += min(l, r)
-    parity[min(l, r) % 2] += 1
-
-pairs = list(filter(lambda p: p[0] % 2 != p[1] % 2, pairs))
-
-majority = parity[0] < parity[1]
-
-if s % 2 != majority:
-    print(s)
-    exit(0)
-
-if abs(parity[1] - parity[0]) > 1:
-    s += min(map(lambda p: abs(p[1] - p[0]), pairs))
-    print(s)
-    exit(0)
-
-min_majority = 10**9
-min_minority1 = 10**9
-min_minority2 = 10**9
-
-for l, r in pairs:
-    if min(l, r) % 2 != majority:
-        min_majority = min(min_majority, abs(l - r))
-    else:
-        if min_minority1 > abs(l - r):
-            min_minority2 = min_minority1
-            min_minority1 = abs(l - r)
-        elif min_minority2 > abs(l - r):
-            min_minority2 = abs(l - r)
-
-print(s + min(min_majority, min_minority1 + min_minority2))
+x < y - 1:
+  
+x
+=
+y - 1:
+  

@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+n = int(input())
+
+a = [int(input()) for _ in range(n)]
+
+R, biggestNotDiv7, biggestDiv7 = 1, 0, 0
+
+for element in a:
+    if element % 49 == 0:
+        continue
+    if element % 7 == 0:
+        R = max(R, element * biggestNotDiv7)
+        biggestDiv7 = max(element, biggestDiv7)
+        continue
+    R = max(R, element * biggestDiv7)
+    biggestNotDiv7 = max(element, biggestNotDiv7)
+
+print(R)
