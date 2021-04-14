@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+import solution as s
+import naive_solution as ns
+
+import random
+
+for i in range(10):
+    print(f'Testing {i}')
+    n = random.randint(1, 10)
+    arr = [random.randint(49, 50) for _ in range(n)]
+
+    answer = s.solve(n, arr)
+    correct = ns.solve(n, arr)
+
+    if answer != correct:
+        print(f'Answer: {answer}, but correct: {correct}')
+        print(n)
+        print(arr)
+        break
+
