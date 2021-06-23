@@ -19,35 +19,19 @@
 Ответ: 121
 '''
 
-'''
-s = 3, a1 = 15, t = 50
-'''
-
+moves = [lambda n: n + 1,
+         lambda n: n * 2,
+         lambda n: n * 3]
+must = [3, 15, 50]
 avoid = [33]
 
 dp = [0] * 100
-dp[3] = 1
+dp[must[0]] = 1
 
-for n in range(3, 15):
-    if n in avoid:
-        continue
-    if n + 1 <= 15:
-        dp[n + 1] = dp[n + 1] + dp[n]
-    if n * 2 <= 15:
-        dp[n * 2] = dp[n * 2] + dp[n]
-    if n * 3 <= 15:
-        dp[n * 3] = dp[n * 3] + dp[n]
+for l, r in zip(must, must[1:]):
+    for n in filter(lambda n : not n in avoid, range(l, r)):
+        for m in moves:
+            if m(n) <= r:
+                dp[m(n)] += dp[n]
 
-for n in range(15, 50):
-    if n in avoid:
-        continue
-    if n + 1 <= 50:
-        dp[n + 1] = dp[n + 1] + dp[n]
-    if n * 2 <= 50:
-        dp[n * 2] = dp[n * 2] + dp[n]
-    if n * 3 <= 50:
-        dp[n * 3] = dp[n * 3] + dp[n]
-
-print(dp[50])
-
-
+print(dp[must[-1]])
