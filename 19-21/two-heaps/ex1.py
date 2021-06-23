@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 
-moves = [lambda p: (p[0] + 1, p[1]),
-         lambda p: (p[0], p[1] + 1),
-         lambda p: (2 * p[0], p[1]),
-         lambda p: (p[0], 2 * p[1])]
-
 
 def win(state):
     return state[0] + state[1] >= 93
